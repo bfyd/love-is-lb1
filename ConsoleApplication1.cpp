@@ -9,12 +9,17 @@ int main()
 	setlocale(LC_ALL,"Rus");
 	int n,m;
 	int max = 100, min = -100;
-
-	printf("Введите колличество строк:\n");
-	scanf_s("%d", &n);
-	printf("Введите колличество столбцов:\n");
-	scanf_s("%d", &m);
-
+	while (1)
+	{
+		printf("Введите колличество строк (строки = столбцы):\n");
+		scanf_s("%d", &n);
+		printf("Введите колличество столбцов:\n");
+		scanf_s("%d", &m);
+		if (n == m)
+		{
+			break;
+		}
+	}
 	int** mas = (int**)malloc(sizeof(int*) * n);
 	
 	for (int i = 0;i < n;i++)
@@ -76,7 +81,6 @@ int main()
 					sum += mas[i][j];
 				}
 			}
-			printf("\n");
 		}
 	}
 	if (num == 2)
@@ -91,10 +95,21 @@ int main()
 					sum += mas[i][j];
 				}
 			}
-			printf("\n");
 		}
 	}
-	printf("Сумма: %d", sum);
+	int sumd = 0;
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < m;j++)
+		{
+			if (j > i)
+			{
+				sumd += mas[i][j];
+			}
+		}
+	}
+	printf("Сумма: %d\n", sum);
+	printf("Cумма чисел выше диагонали: %d", sumd);
 	return 0;
 
 }
